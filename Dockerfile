@@ -3,7 +3,9 @@ RUN mkdir -p /jenkins
 WORKDIR /jenkins
 #python-software-properties
 
-COPY apache-tomcat-8.5.33 /jenkins  && \ ls /jenkins
+COPY apache-tomcat-8.5.33 /jenkins  
+
+RUN ls /jenkins
 
 #COPY jenkins.war /jenkins/apache-tomcat-8.5.33/webapps/ && chmod +x *.sh /jenkins/apache-tomcat-8.5.33/bin/*.sh
 COPY jenkins.war /jenkins/webapps/ && chmod +x *.sh /jenkins/bin/*.sh
