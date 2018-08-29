@@ -28,8 +28,11 @@ COPY apache-tomcat-8.5.33 /jenkins
 RUN ls /jenkins
 
 #COPY jenkins.war /jenkins/apache-tomcat-8.5.33/webapps/ && chmod +x *.sh /jenkins/apache-tomcat-8.5.33/bin/*.sh
-COPY jenkins.war /jenkins/webapps/ 
-RUN chmod +x *.sh /jenkins/bin/*.sh
+COPY jenkins.war /jenkins/webapps/
+
+
+#RUN chmod +x *.sh /jenkins/bin/*.sh
+RUN cd /jenkins/bin/ &&  chmod +x *.sh && cd ../../
 #RUN ls /jenkins && ls  /jenkins/webapps/ && ls /jenkins/bin/
 
 EXPOSE 8080
