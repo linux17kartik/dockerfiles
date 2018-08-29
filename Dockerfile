@@ -22,10 +22,11 @@ RUN apt-get install -y apt-transport-https ca-certificates curl && \
   rm -rf /var/cache/oracle-jdk8-installer && \
   apt-get purge software-properties-common -y
 
-COPY apache-tomcat-8.5.33 /jenkins
+COPY apache-tomcat-8.5.33 /jenkins 
 
-COPY jenkins.war /jenkins/apache-tomcat-8.5.33/webapps/ && chmod +x *.sh /jenkins/apache-tomcat-8.5.33/bin/*.sh
-
+#COPY jenkins.war /jenkins/apache-tomcat-8.5.33/webapps/ && chmod +x *.sh /jenkins/apache-tomcat-8.5.33/bin/*.sh
+COPY jenkins.war /jenkins/webapps/ && chmod +x *.sh /jenkins/bin/*.sh
+RUN ls /jenkins && ls  /jenkins/webapps/ && ls /jenkins/bin/
 
 EXPOSE 8080
 
