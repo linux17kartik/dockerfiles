@@ -20,7 +20,7 @@ RUN   apt-get install -y apt-transport-https ca-certificates curl && \
    stable" && \
    apt-get update -y && apt-get install -y docker-ce && \
    /etc/init.d/docker status && \
-   chmod 777 /var/run/docker.sock
+   chmod 777 /var/run/docker.sock && \
    #docker version && \
   rm -rf /var/lib/apt/lists/* && \
   rm -rf /var/cache/oracle-jdk8-installer && \
