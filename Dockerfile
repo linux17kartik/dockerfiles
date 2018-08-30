@@ -19,8 +19,8 @@ echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | de
    stable" && \
    apt-get update -y && apt-get install -y docker-ce && \
    /etc/init.d/docker start && \
-   chmod 777 /var/run/docker.sock
-   #docker version && \
+   chmod 777 /var/run/docker.sock && \
+  docker version && \
   rm -rf /var/lib/apt/lists/* && \
   rm -rf /var/cache/oracle-jdk8-installer && \
   apt-get purge software-properties-common -y
