@@ -10,7 +10,8 @@ echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | de
   javac -version && \
   wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add - && \
   deb https://pkg.jenkins.io/debian-stable binary/ && \
-  apt-get update &&  apt-get install jenkins && /etc/init.d/jenkins status 
+  apt-get update &&  apt-get install jenkins
+	 #/etc/init.d/jenkins status 
 
 RUN   apt-get install -y apt-transport-https ca-certificates curl && \
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
@@ -19,7 +20,7 @@ RUN   apt-get install -y apt-transport-https ca-certificates curl && \
    $(lsb_release -cs) \
    stable" && \
    apt-get update -y && apt-get install -y docker-ce && \
-   /etc/init.d/docker status && \
+   #/etc/init.d/docker status && \
    chmod 777 /var/run/docker.sock && \
    #docker version && \
   rm -rf /var/lib/apt/lists/* && \
