@@ -9,8 +9,8 @@ RUN apt-get update -y &&  apt-get install software-properties-common -y && \
   apt-get update && \
 echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
   apt-get install -y oracle-java8-installer && \
-  apt-get install -y oracle-java8-set-default && \
-  java -version
+  apt-get install -y oracle-java8-set-default
+ # java -version
 
 RUN apt-get install -y apt-transport-https ca-certificates curl && \
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
