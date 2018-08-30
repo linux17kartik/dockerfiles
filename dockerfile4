@@ -1,6 +1,7 @@
 ##THIS IS WORKING COPY FOR JENKINGS TEST PEOJECT AND BUILD #18
-FROM ubuntu:16.04
-RUN mkdir -p /var/lib/jenkins
+#FROM ubuntu:16.04
+FROM alpine:3.5
+RUN mkdir -p /var/lib/jenkins 
 WORKDIR /var/lib/jenkins
 #python-software-properties
 RUN apt-get update -y &&  apt-get install software-properties-common -y && \
@@ -8,8 +9,8 @@ RUN apt-get update -y &&  apt-get install software-properties-common -y && \
   apt-get update && \
 echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
   apt-get install -y oracle-java8-installer && \
-  apt-get install -y oracle-java8-set-default && \
-  javac -version
+  apt-get install -y oracle-java8-set-default
+ # java -version
 
 RUN apt-get install -y apt-transport-https ca-certificates curl && \
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
@@ -23,17 +24,19 @@ RUN apt-get install -y apt-transport-https ca-certificates curl && \
   rm -rf /var/cache/oracle-jdk8-installer && \
   apt-get purge software-properties-common -y
 
+RUN /etc/init.d/docker start && chmod 777 /var/run/docker.sock
 
-COPY apache-tomcat-8.5.33 /var/lib/jenkins && ls /var/lib/jenkins
+COPY apache-tomcat-8.5.33 /var/lib/jenkins  
 
-#COPY jenkins.war /jenkins/apache-tomcat-8.5.33/webapps/ && chmod +x *.sh /jenkins/apache-tomcat-8.5.33/bin/*.sh
+RUN ls /var/lib/jenkins
+
 COPY jenkins.war /var/lib/jenkins/webapps/
 
 
-#RUN chmod +x *.sh /jenkins/bin/*.sh
-RUN cd /var/lib/jenkins/bin/ &&  chmod +x *.sh && cd /var/lib/jenkins  && chmod 777 /var/run/docker.sock
-#RUN ls /jenkins && ls  /jenkins/webapps/ && ls /jenkins/bin/
+RUN cd /var/lib/jenkins/bin/ &&  chmod +x *.sh && cd
 
 EXPOSE 8080
 
-CMD ["/var/lib/jenkins/bin/catalina.sh", "run"]
+#CMD ["/etc/init.d/docker", "start"]
+
+CMD ["/jenkins/bin/catalina.sh", "run"]
