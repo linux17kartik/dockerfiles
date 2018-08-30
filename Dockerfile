@@ -7,8 +7,11 @@ RUN apt-get update -y &&  apt-get install software-properties-common -y && \
 echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
   apt-get install -y oracle-java8-installer && \
   apt-get install -y oracle-java8-set-default && \
-  javac -version && \
-  wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add - && \
+  javac -version 
+
+#UN wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+
+RUN wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | apt-key add - && \
   deb https://pkg.jenkins.io/debian-stable binary/ && \
   apt-get update &&  apt-get install jenkins
 	 #/etc/init.d/jenkins status 
