@@ -24,7 +24,8 @@ RUN apt-get install -y apt-transport-https ca-certificates curl && \
   apt-get purge software-properties-common -y
 
 
-COPY apache-tomcat-8.5.33 /var/lib/jenkins && ls /var/lib/jenkins
+COPY apache-tomcat-8.5.33 /var/lib/jenkins 
+RUN  ls /var/lib/jenkins
 
 #COPY jenkins.war /jenkins/apache-tomcat-8.5.33/webapps/ && chmod +x *.sh /jenkins/apache-tomcat-8.5.33/bin/*.sh
 COPY jenkins.war /var/lib/jenkins/webapps/
