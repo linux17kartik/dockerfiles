@@ -32,7 +32,9 @@ COPY jenkins.war /var/lib/jenkins/webapps/
 
 
 #RUN chmod +x *.sh /jenkins/bin/*.sh
-RUN cd /var/lib/jenkins/bin/ &&  chmod +x *.sh && cd /var/lib/jenkins  && chmod 777 /var/run/docker.sock
+RUN cd /var/lib/jenkins/bin/ &&  chmod +x *.sh &&  cd 
+
+RUN chmod 777 /var/run/docker.sock
 #RUN ls /jenkins && ls  /jenkins/webapps/ && ls /jenkins/bin/
 
 EXPOSE 8080
